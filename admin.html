@@ -169,6 +169,53 @@
 <footer>
   👑 Tasty & Crémeux — Espace commandes
 </footer>
+<script>
+const SUPABASE_URL = "https://jeyvtkutqlaasadckkts.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_vc1Qb_QbOW6M4RSWTmY2Ag_f6Vzp2XP";
 
+async function chargerCommandes() {
+  const reponse = await fetch(
+    SUPABASE_URL + "/rest/v1/orders?select=*&order=created_at.desc",
+    {
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY
+      }
+    }
+  );
+
+  if (!reponse.ok) {
+    console.error("Erreur Supabase :", await reponse.text());
+    return;
+  }
+
+  const commandes = await reponse.json();
+
+  document.querySelector(".stat strong").textContent = commandes.length;
+
+  const liste = document.querySelector(".vide");
+
+  if (commandes.length === 0) {
+    liste.textContent = "Aucune commande pour le moment.";
+    return;
+  }
+
+  liste.className = "";
+  liste.innerHTML = commandes.map(commande => `
+    <div class="commande">
+      <h2>👑 Commande #${commande.id}</h2>
+      <div class="details">
+        <strong>Nom :</strong> ${commande.customer_name || ""}<br>
+        <strong>Téléphone :</strong> ${commande.customer_phone || ""}<br>
+        <strong>Adresse :</strong> ${commande.customer_address || ""}<br>
+        <strong>Date :</strong> ${new Date(commande.created_at).toLocaleString("fr-FR")}
+      </div>
+    </div>
+  `).join("");
+}
+
+chargerCommandes();
+setInterval(chargerCommandes, 10000);
+</script>
 </body>
 </html>
