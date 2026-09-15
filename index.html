@@ -3,91 +3,347 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tasty & Crémeux</title>
+  <meta name="theme-color" content="#080909">
+  <title>Tasty & Crémeux 👑</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff8f2;
-      color: #29201c;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080909;
+      color: #f5f0e8;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image:
+        radial-gradient(#ffffff 0.7px, transparent 0.7px);
+      background-size: 6px 6px;
+      z-index: 0;
+    }
+
+    header,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
     }
 
     header {
-      background: #6f2dbd;
-      color: white;
+      min-height: 560px;
+      padding: 28px 20px 55px;
       text-align: center;
-      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(245,154,0,0.18), transparent 35%),
+        #080909;
+      border-bottom: 1px solid rgba(245,154,0,0.25);
+    }
+
+    .couronne {
+      font-size: 55px;
+      margin-bottom: 5px;
+      filter: drop-shadow(0 0 14px rgba(245,154,0,0.45));
+      animation: flottement 3s ease-in-out infinite;
+    }
+
+    .label {
+      display: inline-block;
+      padding: 7px 16px;
+      border: 1px solid #f59a00;
+      color: #f59a00;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
     }
 
     header h1 {
-      margin: 0 0 8px;
-      font-size: 32px;
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(44px, 13vw, 88px);
+      line-height: 0.9;
+      font-weight: 1000;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    header h1 span {
+      color: #f59a00;
     }
 
     header p {
-      margin: 0;
+      max-width: 500px;
+      margin: 22px auto 28px;
+      color: #f5f0e8;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brush {
+      position: absolute;
+      width: 260px;
+      height: 28px;
+      background: #f59a00;
+      opacity: 0.8;
+      transform: rotate(-5deg);
+      border-radius: 50% 8% 45% 12%;
+      z-index: -1;
+    }
+
+    .brush.one {
+      top: 28%;
+      left: -70px;
+    }
+
+    .brush.two {
+      bottom: 20%;
+      right: -80px;
+      transform: rotate(7deg);
+    }
+
+    .cta {
+      display: inline-block;
+      border: 0;
+      border-radius: 12px;
+      padding: 16px 28px;
+      background: #f59a00;
+      color: #080909;
       font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(245,154,0,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(245,154,0,0.4);
     }
 
     main {
-      max-width: 700px;
+      max-width: 1050px;
       margin: auto;
-      padding: 20px;
+      padding: 55px 18px;
+    }
+
+    section {
+      margin-bottom: 70px;
+    }
+
+    .section-label {
+      color: #f59a00;
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
     h2 {
-      margin-top: 10px;
+      margin: 0 0 25px;
+      font-size: clamp(34px, 9vw, 58px);
+      line-height: 0.95;
+      font-weight: 1000;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    h2 span {
+      color: #f59a00;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
 
     .plat {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin: 15px 0;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+      background: #111313;
+      border: 1px solid rgba(245,154,0,0.22);
+      border-radius: 20px;
+      padding: 28px;
+      min-height: 250px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .plat:hover {
+      transform: translateY(-5px);
+      border-color: #f59a00;
+    }
+
+    .plat::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -65px;
+      bottom: -65px;
+      border-radius: 50%;
+      background: rgba(245,154,0,0.08);
+    }
+
+    .plat-emoji {
+      font-size: 48px;
+      margin-bottom: 12px;
     }
 
     .plat h3 {
-      margin-top: 0;
-      font-size: 21px;
+      margin: 0;
+      font-size: 25px;
+      line-height: 1;
+      font-weight: 1000;
+      text-transform: uppercase;
     }
 
     .description {
-      color: #665c57;
+      color: #c9c3bb;
+      margin: 14px 0 20px;
     }
 
     .prix {
-      font-size: 20px;
-      font-weight: bold;
-      color: #6f2dbd;
-    }
-
-    button {
-      border: 0;
+      display: inline-block;
+      margin: 0;
+      padding: 9px 14px;
       border-radius: 10px;
-      padding: 12px 16px;
-      background: #6f2dbd;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+      background: #f59a00;
+      color: #080909;
+      font-size: 20px;
+      font-weight: 1000;
     }
 
-    button:active {
-      transform: scale(0.98);
+    .plat button {
+      display: block;
+      width: 100%;
+      margin-top: 18px;
+      border: 1px solid #f59a00;
+      border-radius: 10px;
+      padding: 13px;
+      background: transparent;
+      color: #f59a00;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .plat button:hover {
+      background: #f59a00;
+      color: #080909;
+    }
+
+    .badges {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .badge {
+      padding: 18px 10px;
+      text-align: center;
+      background: #f5f0e8;
+      color: #080909;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    .pourquoi {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .raison {
+      padding: 22px 14px;
+      background: #111313;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid #252525;
+    }
+
+    .raison .icone {
+      font-size: 34px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .raison strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .snap {
+      position: relative;
+      overflow: hidden;
+      padding: 45px 25px;
+      border-radius: 22px;
+      background: #f59a00;
+      color: #080909;
+      text-align: center;
+    }
+
+    .snap::before {
+      content: "👑";
+      position: absolute;
+      font-size: 130px;
+      right: -15px;
+      bottom: -45px;
+      opacity: 0.12;
+    }
+
+    .snap h2 {
+      font-size: clamp(34px, 9vw, 58px);
+      margin-bottom: 12px;
+    }
+
+    .snap p {
+      font-weight: 800;
+      margin: 0 auto 25px;
+      max-width: 500px;
+    }
+
+    .snap .cta {
+      background: #080909;
+      color: #f5f0e8;
+      box-shadow: none;
     }
 
     .panier {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 25px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      background: #111313;
+      border: 1px solid rgba(245,154,0,0.25);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .panier h2 {
+      font-size: 32px;
     }
 
     .ligne-panier {
@@ -95,64 +351,141 @@
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
+      padding: 14px 0;
+      border-bottom: 1px solid #292929;
     }
 
     .petit-bouton {
-      padding: 7px 10px;
-      font-size: 14px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 1px solid #f59a00;
+      border-radius: 9px;
+      background: transparent;
+      color: #f59a00;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .total {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 20px 0;
+      padding: 22px 0;
+      font-size: 24px;
+      font-weight: 1000;
+      color: #f59a00;
     }
 
     label {
       display: block;
-      font-weight: bold;
-      margin-top: 15px;
+      margin-top: 17px;
+      margin-bottom: 6px;
+      font-weight: 800;
+      color: #f5f0e8;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 13px;
-      margin-top: 7px;
-      border: 1px solid #ccc;
-      border-radius: 9px;
+      padding: 14px;
+      border: 1px solid #353535;
+      border-radius: 10px;
+      outline: none;
+      background: #080909;
+      color: #f5f0e8;
       font-size: 16px;
-      background: white;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #f59a00;
     }
 
     textarea {
-      min-height: 90px;
+      min-height: 100px;
       resize: vertical;
     }
 
     .commande {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 12px;
+      padding: 17px;
+      background: #f59a00;
+      color: #080909;
       font-size: 17px;
+      font-weight: 1000;
+      cursor: pointer;
     }
 
     #confirmation {
       display: none;
       margin-top: 20px;
-      padding: 16px;
-      border-radius: 10px;
-      background: #e2f7e8;
-      color: #175b29;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f5f0e8;
+      color: #080909;
+      overflow-wrap: anywhere;
     }
 
     footer {
+      padding: 45px 20px;
       text-align: center;
-      padding: 30px 20px;
-      color: #766c67;
-      font-size: 14px;
+      background: #050606;
+      border-top: 1px solid #222;
+    }
+
+    footer .couronne {
+      font-size: 35px;
+    }
+
+    footer strong {
+      display: block;
+      color: #f59a00;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
+    footer p {
+      color: #8f8982;
+      font-size: 13px;
+    }
+
+    @keyframes flottement {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        min-height: 500px;
+      }
+
+      .menu {
+        grid-template-columns: 1fr;
+      }
+
+      .badges {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pourquoi {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      main {
+        padding-top: 42px;
+      }
+
+      .plat {
+        padding: 24px;
+      }
     }
   </style>
 </head>
@@ -160,80 +493,166 @@
 <body>
 
 <header>
-  <h1>🍽️ Tasty & Crémeux</h1>
-  <p>Des plats gourmands à Vaulx-en-Velin et alentours</p>
+  <div class="brush one"></div>
+  <div class="brush two"></div>
+
+  <div class="couronne">👑</div>
+
+  <div class="label">FAIT MAISON</div>
+
+  <h1>TASTY<br><span>& CRÉMEUX</span></h1>
+
+  <p>
+    DU GOÛT, DE LA QUALITÉ,<br>
+    RIEN QUE POUR VOUS !
+  </p>
+
+  <a class="cta" href="#menu">COMMANDER</a>
 </header>
 
 <main>
 
-  <h2>Notre menu</h2>
+  <section id="menu">
+    <div class="section-label">Notre sélection</div>
+    <h2>LE <span>MENU</span></h2>
 
-  <div class="plat">
-    <h3>🍗 Tasty Crousty</h3>
-    <p class="description">
-      Un délicieux plat croustillant préparé avec soin.
-    </p>
-    <p class="prix">7,50 €</p>
-    <button onclick="ajouter('Tasty Crousty', 7.50)">
-      Ajouter au panier
-    </button>
-  </div>
+    <div class="menu">
 
-  <div class="plat">
-    <h3>🍝 Pâtes au saumon</h3>
-    <p class="description">
-      Des pâtes crémeuses accompagnées de saumon.
-    </p>
-    <p class="prix">10,00 €</p>
-    <button onclick="ajouter('Pâtes au saumon', 10)">
-      Ajouter au panier
-    </button>
-  </div>
+      <article class="plat">
+        <div class="plat-emoji">🍗</div>
 
-  <section class="panier">
+        <h3>Tasty Crousty</h3>
 
-    <h2>🛒 Mon panier</h2>
+        <p class="description">
+          Poulet croustillant, sauce maison, pain moelleux.
+        </p>
 
-    <div id="panier">
-      <p>Votre panier est vide.</p>
+        <p class="prix">7,50 €</p>
+
+        <button onclick="ajouter('Tasty Crousty', 7.50)">
+          + AJOUTER AU PANIER
+        </button>
+      </article>
+
+      <article class="plat">
+        <div class="plat-emoji">🍝</div>
+
+        <h3>Pâtes au saumon crémeuses</h3>
+
+        <p class="description">
+          Saumon frais, sauce crémeuse maison.
+        </p>
+
+        <p class="prix">10,00 €</p>
+
+        <button onclick="ajouter('Pâtes au saumon', 10)">
+          + AJOUTER AU PANIER
+        </button>
+      </article>
+
     </div>
+  </section>
 
-    <div class="total">
-      Total : <span id="total">0,00 €</span>
+  <section>
+    <div class="badges">
+      <div class="badge">👨‍🍳 Fait maison</div>
+      <div class="badge">🔥 Cuisiné à la commande</div>
+      <div class="badge">❤️ Généreux & gourmand</div>
+      <div class="badge">🚚 Service rapide</div>
     </div>
+  </section>
 
-    <h2>📝 Mes informations</h2>
+  <section>
+    <div class="section-label">Notre différence</div>
+    <h2>POURQUOI <span>NOUS ?</span></h2>
 
-    <label for="nom">Nom et prénom</label>
-    <input id="nom" type="text" placeholder="Ex : Marie Dupont">
+    <div class="pourquoi">
+      <div class="raison">
+        <span class="icone">👨‍🍳</span>
+        <strong>Fait maison</strong>
+      </div>
 
-    <label for="telephone">Téléphone</label>
-    <input id="telephone" type="tel" placeholder="Ex : 06 00 00 00 00">
+      <div class="raison">
+        <span class="icone">🔥</span>
+        <strong>Cuisiné à la commande</strong>
+      </div>
 
-    <label for="mode">Je souhaite</label>
-    <select id="mode">
-      <option value="Livraison">🚗 Une livraison</option>
-      <option value="Retrait">📍 Un retrait sur place</option>
-    </select>
+      <div class="raison">
+        <span class="icone">❤️</span>
+        <strong>Portions généreuses</strong>
+      </div>
 
-    <label for="adresse">Adresse / lieu de retrait</label>
-    <input id="adresse" type="text" placeholder="Votre adresse">
+      <div class="raison">
+        <span class="icone">🚚</span>
+        <strong>Service rapide</strong>
+      </div>
+    </div>
+  </section>
 
-    <label for="note">Note (facultatif)</label>
-    <textarea id="note" placeholder="Une précision concernant votre commande..."></textarea>
+  <section>
+    <div class="snap">
+      <h2>COMMANDE<br>SUR SNAP !</h2>
 
-    <button class="commande" onclick="preparerCommande()">
-      Préparer ma commande
-    </button>
+      <p>
+        Envoie un Snap pour commander ou pour plus d'infos !
+      </p>
 
-    <div id="confirmation"></div>
+      <a class="cta" href="#commande">
+        COMMANDER MAINTENANT
+      </a>
+    </div>
+  </section>
 
+  <section id="commande">
+    <div class="panier">
+
+      <div class="section-label">À vous de jouer</div>
+      <h2>MON <span>PANIER</span> 🛒</h2>
+
+      <div id="panier">
+        <p>Votre panier est vide.</p>
+      </div>
+
+      <div class="total">
+        TOTAL : <span id="total">0,00 €</span>
+      </div>
+
+      <h2>MES <span>INFOS</span></h2>
+
+      <label for="nom">Nom et prénom</label>
+      <input id="nom" type="text" placeholder="Ex : Marie Dupont">
+
+      <label for="telephone">Téléphone</label>
+      <input id="telephone" type="tel" placeholder="Ex : 06 00 00 00 00">
+
+      <label for="mode">Je souhaite</label>
+      <select id="mode">
+        <option value="Livraison">🚗 Une livraison</option>
+        <option value="Retrait">📍 Un retrait sur place</option>
+      </select>
+
+      <label for="adresse">Adresse / lieu de retrait</label>
+      <input id="adresse" type="text" placeholder="Votre adresse">
+
+      <label for="note">Note (facultatif)</label>
+      <textarea id="note" placeholder="Une précision concernant votre commande..."></textarea>
+
+      <button class="commande" onclick="preparerCommande()">
+        PRÉPARER MA COMMANDE 👑
+      </button>
+
+      <div id="confirmation"></div>
+
+    </div>
   </section>
 
 </main>
 
 <footer>
-  Tasty & Crémeux — Vaulx-en-Velin et alentours
+  <div class="couronne">👑</div>
+  <strong>Tasty & Crémeux</strong>
+  <p>FAIT MAISON • Vaulx-en-Velin & alentours</p>
+  <p>Des plats gourmands préparés avec soin.</p>
 </footer>
 
 <script>
@@ -307,6 +726,7 @@
     });
 
     zone.innerHTML = html;
+
     totalZone.textContent =
       total.toFixed(2).replace(".", ",") + " €";
   }
