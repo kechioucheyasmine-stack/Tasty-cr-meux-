@@ -785,6 +785,38 @@
   }
   const SUPABASE_URL = "https://jeyvtkutqlaasadckkts.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_vc1Qb_QbOW6M4RSWTmY2Ag_f6Vzp2XP";
+  fetch(SUPABASE_URL + "/rest/v1/orders", {
+  method: "POST",
+    headers: {
+      "apikey": SUPABASE_ANON_KEY,
+      "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+      "Content-Type": "application/json"
+        },
+    body: JSON.stringify({
+      customer_name: nom,
+      customer_phone: telephone,
+      customer_address: adresse,
+      note: note
+        })
+      .then(response => {
+
+  if (!response.ok) throw new Error("Erreur Supabase");
+
+  return response.json();
+
+})
+
+.then(() => {
+
+  console.log("Commande envoyée à Supabase");
+
+})
+
+.catch(error => {
+
+  console.error(error);
+
+});
 </script>
 
 </body>
