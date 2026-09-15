@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasty & Crémeux</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8f2;
+      color: #29201c;
+    }
+
+    header {
+      background: #6f2dbd;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 10px;
+    }
+
+    .plat {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .plat h3 {
+      margin-top: 0;
+      font-size: 21px;
+    }
+
+    .description {
+      color: #665c57;
+    }
+
+    .prix {
+      font-size: 20px;
+      font-weight: bold;
+      color: #6f2dbd;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: #6f2dbd;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .panier {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .ligne-panier {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .petit-bouton {
+      padding: 7px 10px;
+      font-size: 14px;
+    }
+
+    .total {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .commande {
+      width: 100%;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+
+    #confirmation {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 10px;
+      background: #e2f7e8;
+      color: #175b29;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #766c67;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍽️ Tasty & Crémeux</h1>
+  <p>Des plats gourmands à Vaulx-en-Velin et alentours</p>
+</header>
+
+<main>
+
+  <h2>Notre menu</h2>
+
+  <div class="plat">
+    <h3>🍗 Tasty Crousty</h3>
+    <p class="description">
+      Un délicieux plat croustillant préparé avec soin.
+    </p>
+    <p class="prix">7,50 €</p>
+    <button onclick="ajouter('Tasty Crousty', 7.50)">
+      Ajouter au panier
+    </button>
+  </div>
+
+  <div class="plat">
+    <h3>🍝 Pâtes au saumon</h3>
+    <p class="description">
+      Des pâtes crémeuses accompagnées de saumon.
+    </p>
+    <p class="prix">10,00 €</p>
+    <button onclick="ajouter('Pâtes au saumon', 10)">
+      Ajouter au panier
+    </button>
+  </div>
+
+  <section class="panier">
+
+    <h2>🛒 Mon panier</h2>
+
+    <div id="panier">
+      <p>Votre panier est vide.</p>
+    </div>
+
+    <div class="total">
+      Total : <span id="total">0,00 €</span>
+    </div>
+
+    <h2>📝 Mes informations</h2>
+
+    <label for="nom">Nom et prénom</label>
+    <input id="nom" type="text" placeholder="Ex : Marie Dupont">
+
+    <label for="telephone">Téléphone</label>
+    <input id="telephone" type="tel" placeholder="Ex : 06 00 00 00 00">
+
+    <label for="mode">Je souhaite</label>
+    <select id="mode">
+      <option value="Livraison">🚗 Une livraison</option>
+      <option value="Retrait">📍 Un retrait sur place</option>
+    </select>
+
+    <label for="adresse">Adresse / lieu de retrait</label>
+    <input id="adresse" type="text" placeholder="Votre adresse">
+
+    <label for="note">Note (facultatif)</label>
+    <textarea id="note" placeholder="Une précision concernant votre commande..."></textarea>
+
+    <button class="commande" onclick="preparerCommande()">
+      Préparer ma commande
+    </button>
+
+    <div id="confirmation"></div>
+
+  </section>
+
+</main>
+
+<footer>
+  Tasty & Crémeux — Vaulx-en-Velin et alentours
+</footer>
+
+<script>
+  let panier = [];
+
+  function ajouter(nom, prix) {
+    const article = panier.find(item => item.nom === nom);
+
+    if (article) {
+      article.quantite++;
+    } else {
+      panier.push({
+        nom: nom,
+        prix: prix,
+        quantite: 1
+      });
+    }
+
+    afficherPanier();
+  }
+
+  function retirer(nom) {
+    const article = panier.find(item => item.nom === nom);
+
+    if (!article) return;
+
+    article.quantite--;
+
+    if (article.quantite <= 0) {
+      panier = panier.filter(item => item.nom !== nom);
+    }
+
+    afficherPanier();
+  }
+
+  function afficherPanier() {
+    const zone = document.getElementById("panier");
+    const totalZone = document.getElementById("total");
+
+    if (panier.length === 0) {
+      zone.innerHTML = "<p>Votre panier est vide.</p>";
+      totalZone.textContent = "0,00 €";
+      return;
+    }
+
+    let total = 0;
+    let html = "";
+
+    panier.forEach(article => {
+      const sousTotal = article.prix * article.quantite;
+      total += sousTotal;
+
+      html += `
+        <div class="ligne-panier">
+          <div>
+            <strong>${article.nom}</strong><br>
+            ${article.quantite} × ${article.prix.toFixed(2).replace(".", ",")} €
+          </div>
+
+          <button class="petit-bouton"
+            onclick="retirer('${article.nom}')">
+            −
+          </button>
+
+          <button class="petit-bouton"
+            onclick="ajouter('${article.nom}', ${article.prix})">
+            +
+          </button>
+        </div>
+      `;
+    });
+
+    zone.innerHTML = html;
+    totalZone.textContent =
+      total.toFixed(2).replace(".", ",") + " €";
+  }
+
+  function preparerCommande() {
+
+    if (panier.length === 0) {
+      alert("Ajoutez au moins un plat à votre panier.");
+      return;
+    }
+
+    const nom = document.getElementById("nom").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+    const mode = document.getElementById("mode").value;
+    const adresse = document.getElementById("adresse").value.trim();
+    const note = document.getElementById("note").value.trim();
+
+    if (!nom || !telephone || !adresse) {
+      alert("Merci de remplir votre nom, votre téléphone et votre adresse.");
+      return;
+    }
+
+    let total = 0;
+    let details = "";
+
+    panier.forEach(article => {
+      const sousTotal = article.prix * article.quantite;
+      total += sousTotal;
+
+      details +=
+        article.quantite + " × " +
+        article.nom + " — " +
+        sousTotal.toFixed(2).replace(".", ",") +
+        " €\n";
+    });
+
+    const commande =
+      "NOUVELLE COMMANDE TASTY & CRÉMEUX\n\n" +
+      details +
+      "\nTOTAL : " +
+      total.toFixed(2).replace(".", ",") +
+      " €\n\n" +
+      "Nom : " + nom + "\n" +
+      "Téléphone : " + telephone + "\n" +
+      "Mode : " + mode + "\n" +
+      "Adresse : " + adresse + "\n" +
+      "Note : " + (note || "Aucune");
+
+    const confirmation = document.getElementById("confirmation");
+
+    confirmation.style.display = "block";
+
+    confirmation.innerHTML =
+      "<strong>Commande préparée ✅</strong><br><br>" +
+      commande.replace(/\n/g, "<br>");
+  }
+</script>
+
+</body>
+</html>
