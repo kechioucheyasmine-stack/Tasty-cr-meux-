@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasty & Crémeux — Commandes</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #080909;
+      color: #f5f0e8;
+    }
+
+    header {
+      padding: 25px 20px;
+      text-align: center;
+      background: #080909;
+      border-bottom: 2px solid #f59a00;
+    }
+
+    .couronne {
+      font-size: 42px;
+    }
+
+    h1 {
+      margin: 5px 0;
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    h1 span {
+      color: #f59a00;
+    }
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 25px 16px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      padding: 18px 8px;
+      text-align: center;
+      background: #111313;
+      border: 1px solid #292929;
+      border-radius: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      color: #f59a00;
+      font-size: 24px;
+    }
+
+    .stat small {
+      color: #c9c3bb;
+    }
+
+    .commande {
+      margin-bottom: 18px;
+      padding: 20px;
+      background: #111313;
+      border: 1px solid #333;
+      border-radius: 18px;
+    }
+
+    .commande.nouvelle {
+      border-color: #f59a00;
+    }
+
+    .commande h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .commande h2 span {
+      color: #f59a00;
+    }
+
+    .details {
+      color: #d8d2ca;
+      line-height: 1.7;
+    }
+
+    .total {
+      margin: 15px 0;
+      color: #f59a00;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #f59a00;
+      color: #080909;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .vide {
+      padding: 30px;
+      text-align: center;
+      background: #111313;
+      border-radius: 16px;
+      color: #aaa;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="couronne">👑</div>
+  <h1>Tasty <span>& Crémeux</span></h1>
+  <p>Tableau de bord des commandes</p>
+</header>
+
+<main>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>0</strong>
+      <small>Nouvelles</small>
+    </div>
+
+    <div class="stat">
+      <strong>0</strong>
+      <small>En préparation</small>
+    </div>
+
+    <div class="stat">
+      <strong>0 €</strong>
+      <small>Aujourd'hui</small>
+    </div>
+  </div>
+
+  <div class="commande nouvelle">
+    <h2>🔴 <span>Nouvelles commandes</span></h2>
+
+    <div class="vide">
+      Aucune commande pour le moment.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  👑 Tasty & Crémeux — Espace commandes
+</footer>
+
+</body>
+</html>
