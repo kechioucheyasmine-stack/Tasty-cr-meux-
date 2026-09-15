@@ -52,7 +52,11 @@
       align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(circle at 50% 20%, rgba(245,154,0,0.18), transparent 35%),
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(245,154,0,0.18),
+          transparent 35%
+        ),
         #080909;
       border-bottom: 1px solid rgba(245,154,0,0.25);
     }
@@ -368,6 +372,11 @@
       cursor: pointer;
     }
 
+    .petit-bouton:hover {
+      background: #f59a00;
+      color: #080909;
+    }
+
     .total {
       padding: 22px 0;
       font-size: 24px;
@@ -418,6 +427,17 @@
       font-size: 17px;
       font-weight: 1000;
       cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .commande:hover {
+      transform: translateY(-2px);
+    }
+
+    .commande:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
     }
 
     #confirmation {
@@ -428,6 +448,12 @@
       background: #f5f0e8;
       color: #080909;
       overflow-wrap: anywhere;
+    }
+
+    #confirmation.erreur {
+      background: #3a1515;
+      color: #ffffff;
+      border: 1px solid #b33;
     }
 
     footer {
@@ -457,6 +483,7 @@
       0%, 100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-6px);
       }
@@ -487,6 +514,25 @@
         padding: 24px;
       }
     }
+
+    @media (max-width: 430px) {
+      .ligne-panier {
+        flex-wrap: wrap;
+      }
+
+      .ligne-panier > div {
+        width: 100%;
+      }
+
+      .petit-bouton {
+        width: 45%;
+      }
+
+      .badges,
+      .pourquoi {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -500,323 +546,961 @@
 
   <div class="label">FAIT MAISON</div>
 
-  <h1>TASTY<br><span>& CRÉMEUX</span></h1>
+  <h1>
+    TASTY<br>
+    <span>& CRÉMEUX</span>
+  </h1>
 
   <p>
     DU GOÛT, DE LA QUALITÉ,<br>
     RIEN QUE POUR VOUS !
   </p>
 
-  <a class="cta" href="#menu">COMMANDER</a>
+  <a class="cta" href="#menu">
+    COMMANDER
+  </a>
 </header>
 
 <main>
 
+  <!-- =========================
+       MENU
+  ========================== -->
+
   <section id="menu">
-    <div class="section-label">Notre sélection</div>
-    <h2>LE <span>MENU</span></h2>
+
+    <div class="section-label">
+      Notre sélection
+    </div>
+
+    <h2>
+      LE <span>MENU</span>
+    </h2>
 
     <div class="menu">
 
       <article class="plat">
-        <div class="plat-emoji">🍗</div>
 
-        <h3>Tasty Crousty</h3>
+        <div class="plat-emoji">
+          🍗
+        </div>
+
+        <h3>
+          Tasty Crousty
+        </h3>
 
         <p class="description">
           Poulet croustillant, sauce maison, pain moelleux.
         </p>
 
-        <p class="prix">7,50 €</p>
+        <p class="prix">
+          7,50 €
+        </p>
 
-        <button onclick="ajouter('Tasty Crousty', 7.50)">
+        <button
+          type="button"
+          onclick="ajouter('Tasty Crousty', 7.50)"
+        >
           + AJOUTER AU PANIER
         </button>
+
       </article>
 
-      <article class="plat">
-        <div class="plat-emoji">🍝</div>
 
-        <h3>Pâtes au saumon crémeuses</h3>
+      <article class="plat">
+
+        <div class="plat-emoji">
+          🍝
+        </div>
+
+        <h3>
+          Pâtes au saumon crémeuses
+        </h3>
 
         <p class="description">
           Saumon frais, sauce crémeuse maison.
         </p>
 
-        <p class="prix">10,00 €</p>
+        <p class="prix">
+          10,00 €
+        </p>
 
-        <button onclick="ajouter('Pâtes au saumon', 10)">
+        <button
+          type="button"
+          onclick="ajouter('Pâtes au saumon', 10)"
+        >
           + AJOUTER AU PANIER
         </button>
+
       </article>
 
     </div>
+
   </section>
 
+
+  <!-- =========================
+       BADGES
+  ========================== -->
+
   <section>
+
     <div class="badges">
-      <div class="badge">👨‍🍳 Fait maison</div>
-      <div class="badge">🔥 Cuisiné à la commande</div>
-      <div class="badge">❤️ Généreux & gourmand</div>
-      <div class="badge">🚚 Service rapide</div>
+
+      <div class="badge">
+        👨‍🍳 Fait maison
+      </div>
+
+      <div class="badge">
+        🔥 Cuisiné à la commande
+      </div>
+
+      <div class="badge">
+        ❤️ Généreux & gourmand
+      </div>
+
+      <div class="badge">
+        🚚 Service rapide
+      </div>
+
     </div>
+
   </section>
 
+
+  <!-- =========================
+       POURQUOI NOUS
+  ========================== -->
+
   <section>
-    <div class="section-label">Notre différence</div>
-    <h2>POURQUOI <span>NOUS ?</span></h2>
+
+    <div class="section-label">
+      Notre différence
+    </div>
+
+    <h2>
+      POURQUOI <span>NOUS ?</span>
+    </h2>
 
     <div class="pourquoi">
+
       <div class="raison">
         <span class="icone">👨‍🍳</span>
-        <strong>Fait maison</strong>
+        <strong>
+          Fait maison
+        </strong>
       </div>
 
       <div class="raison">
         <span class="icone">🔥</span>
-        <strong>Cuisiné à la commande</strong>
+        <strong>
+          Cuisiné à la commande
+        </strong>
       </div>
 
       <div class="raison">
         <span class="icone">❤️</span>
-        <strong>Portions généreuses</strong>
+        <strong>
+          Portions généreuses
+        </strong>
       </div>
 
       <div class="raison">
         <span class="icone">🚚</span>
-        <strong>Service rapide</strong>
+        <strong>
+          Service rapide
+        </strong>
       </div>
+
     </div>
+
   </section>
 
+
+  <!-- =========================
+       SNAP
+  ========================== -->
+
   <section>
+
     <div class="snap">
-      <h2>COMMANDE<br>SUR SNAP !</h2>
+
+      <h2>
+        COMMANDE<br>
+        SUR SNAP !
+      </h2>
 
       <p>
         Envoie un Snap pour commander ou pour plus d'infos !
       </p>
 
-      <a class="cta" href="#commande">
+      <a
+        class="cta"
+        href="#commande"
+      >
         COMMANDER MAINTENANT
       </a>
+
     </div>
+
   </section>
 
+
+  <!-- =========================
+       COMMANDE
+  ========================== -->
+
   <section id="commande">
+
     <div class="panier">
 
-      <div class="section-label">À vous de jouer</div>
-      <h2>MON <span>PANIER</span> 🛒</h2>
+      <div class="section-label">
+        À vous de jouer
+      </div>
+
+      <h2>
+        MON <span>PANIER</span> 🛒
+      </h2>
 
       <div id="panier">
-        <p>Votre panier est vide.</p>
+        <p>
+          Votre panier est vide.
+        </p>
       </div>
 
       <div class="total">
-        TOTAL : <span id="total">0,00 €</span>
+        TOTAL :
+        <span id="total">
+          0,00 €
+        </span>
       </div>
 
-      <h2>MES <span>INFOS</span></h2>
 
-      <label for="nom">Nom et prénom</label>
-      <input id="nom" type="text" placeholder="Ex : Marie Dupont">
+      <h2>
+        MES <span>INFOS</span>
+      </h2>
 
-      <label for="telephone">Téléphone</label>
-      <input id="telephone" type="tel" placeholder="Ex : 06 00 00 00 00">
 
-      <label for="mode">Je souhaite</label>
+      <label for="nom">
+        Nom et prénom
+      </label>
+
+      <input
+        id="nom"
+        type="text"
+        placeholder="Ex : Marie Dupont"
+        autocomplete="name"
+      >
+
+
+      <label for="telephone">
+        Téléphone
+      </label>
+
+      <input
+        id="telephone"
+        type="tel"
+        placeholder="Ex : 06 00 00 00 00"
+        autocomplete="tel"
+      >
+
+
+      <label for="mode">
+        Je souhaite
+      </label>
+
       <select id="mode">
-        <option value="Livraison">🚗 Une livraison</option>
-        <option value="Retrait">📍 Un retrait sur place</option>
+
+        <option value="Livraison">
+          🚗 Une livraison
+        </option>
+
+        <option value="Retrait">
+          📍 Un retrait sur place
+        </option>
+
       </select>
 
-      <label for="adresse">Adresse / lieu de retrait</label>
-      <input id="adresse" type="text" placeholder="Votre adresse">
 
-      <label for="note">Note (facultatif)</label>
-      <textarea id="note" placeholder="Une précision concernant votre commande..."></textarea>
+      <label for="adresse">
+        Adresse / lieu de retrait
+      </label>
 
-      <button class="commande" onclick="preparerCommande()">
+      <input
+        id="adresse"
+        type="text"
+        placeholder="Votre adresse"
+        autocomplete="street-address"
+      >
+
+
+      <label for="note">
+        Note (facultatif)
+      </label>
+
+      <textarea
+        id="note"
+        placeholder="Une précision concernant votre commande..."
+      ></textarea>
+
+
+      <button
+        id="boutonCommande"
+        class="commande"
+        type="button"
+        onclick="preparerCommande()"
+      >
         PRÉPARER MA COMMANDE 👑
       </button>
+
 
       <div id="confirmation"></div>
 
     </div>
+
   </section>
 
 </main>
 
+
+<!-- =========================
+     FOOTER
+========================== -->
+
 <footer>
-  <div class="couronne">👑</div>
-  <strong>Tasty & Crémeux</strong>
-  <p>FAIT MAISON • Vaulx-en-Velin & alentours</p>
-  <p>Des plats gourmands préparés avec soin.</p>
+
+  <div class="couronne">
+    👑
+  </div>
+
+  <strong>
+    Tasty & Crémeux
+  </strong>
+
+  <p>
+    FAIT MAISON • Vaulx-en-Velin & alentours
+  </p>
+
+  <p>
+    Des plats gourmands préparés avec soin.
+  </p>
+
 </footer>
 
+
 <script>
+
+  /* =====================================================
+     PANIER
+  ===================================================== */
+
   let panier = [];
 
+
+  /* =====================================================
+     SUPABASE
+  ===================================================== */
+
+  const SUPABASE_URL =
+    "https://jeyvtkutqlaasadckkts.supabase.co";
+
+  /*
+   * COLLE ICI TA CLÉ PUBLISHABLE SUPABASE.
+   *
+   * Ne mets PAS la clé "Secret".
+   */
+  const SUPABASE_ANON_KEY =
+    "COLLE_TA_CLE_PUBLISHABLE_ICI";
+
+
+  /* =====================================================
+     AJOUTER UN ARTICLE
+  ===================================================== */
+
   function ajouter(nom, prix) {
-    const article = panier.find(item => item.nom === nom);
+
+    const article = panier.find(
+      item => item.nom === nom
+    );
 
     if (article) {
+
       article.quantite++;
+
     } else {
+
       panier.push({
         nom: nom,
         prix: prix,
         quantite: 1
       });
+
     }
 
     afficherPanier();
   }
 
-  function retirer(nom) {
-    const article = panier.find(item => item.nom === nom);
 
-    if (!article) return;
+  /* =====================================================
+     RETIRER UN ARTICLE
+  ===================================================== */
+
+  function retirer(nom) {
+
+    const article = panier.find(
+      item => item.nom === nom
+    );
+
+    if (!article) {
+      return;
+    }
 
     article.quantite--;
 
     if (article.quantite <= 0) {
-      panier = panier.filter(item => item.nom !== nom);
+
+      panier = panier.filter(
+        item => item.nom !== nom
+      );
+
     }
 
     afficherPanier();
   }
 
+
+  /* =====================================================
+     AFFICHER LE PANIER
+  ===================================================== */
+
   function afficherPanier() {
-    const zone = document.getElementById("panier");
-    const totalZone = document.getElementById("total");
+
+    const zone =
+      document.getElementById("panier");
+
+    const totalZone =
+      document.getElementById("total");
+
 
     if (panier.length === 0) {
-      zone.innerHTML = "<p>Votre panier est vide.</p>";
-      totalZone.textContent = "0,00 €";
+
+      zone.innerHTML =
+        "<p>Votre panier est vide.</p>";
+
+      totalZone.textContent =
+        "0,00 €";
+
       return;
     }
 
+
     let total = 0;
+
     let html = "";
 
+
     panier.forEach(article => {
-      const sousTotal = article.prix * article.quantite;
+
+      const sousTotal =
+        article.prix * article.quantite;
+
       total += sousTotal;
+
+
+      /*
+       * Création d'une ligne du panier.
+       */
 
       html += `
         <div class="ligne-panier">
+
           <div>
-            <strong>${article.nom}</strong><br>
-            ${article.quantite} × ${article.prix.toFixed(2).replace(".", ",")} €
+            <strong>${echapperHTML(article.nom)}</strong>
+            <br>
+            ${article.quantite}
+            ×
+            ${article.prix.toFixed(2).replace(".", ",")} €
           </div>
 
-          <button class="petit-bouton"
-            onclick="retirer('${article.nom}')">
+          <button
+            class="petit-bouton"
+            type="button"
+            onclick="retirer('${echapperAttribut(article.nom)}')"
+            aria-label="Retirer un article"
+          >
             −
           </button>
 
-          <button class="petit-bouton"
-            onclick="ajouter('${article.nom}', ${article.prix})">
+          <button
+            class="petit-bouton"
+            type="button"
+            onclick="ajouter('${echapperAttribut(article.nom)}', ${article.prix})"
+            aria-label="Ajouter un article"
+          >
             +
           </button>
+
         </div>
       `;
+
     });
+
 
     zone.innerHTML = html;
 
+
     totalZone.textContent =
-      total.toFixed(2).replace(".", ",") + " €";
+      total.toFixed(2).replace(".", ",") +
+      " €";
   }
 
-  function preparerCommande() {
 
-    if (panier.length === 0) {
-      alert("Ajoutez au moins un plat à votre panier.");
-      return;
-    }
+  /* =====================================================
+     CALCUL DU TOTAL
+  ===================================================== */
 
-    const nom = document.getElementById("nom").value.trim();
-    const telephone = document.getElementById("telephone").value.trim();
-    const mode = document.getElementById("mode").value;
-    const adresse = document.getElementById("adresse").value.trim();
-    const note = document.getElementById("note").value.trim();
-
-    if (!nom || !telephone || !adresse) {
-      alert("Merci de remplir votre nom, votre téléphone et votre adresse.");
-      return;
-    }
+  function calculerTotal() {
 
     let total = 0;
+
+    panier.forEach(article => {
+
+      total +=
+        article.prix *
+        article.quantite;
+
+    });
+
+    return total;
+  }
+
+
+  /* =====================================================
+     CRÉER LES DÉTAILS DE LA COMMANDE
+  ===================================================== */
+
+  function creerDetailsCommande() {
+
     let details = "";
 
     panier.forEach(article => {
-      const sousTotal = article.prix * article.quantite;
-      total += sousTotal;
+
+      const sousTotal =
+        article.prix *
+        article.quantite;
 
       details +=
-        article.quantite + " × " +
-        article.nom + " — " +
+        article.quantite +
+        " × " +
+        article.nom +
+        " — " +
         sousTotal.toFixed(2).replace(".", ",") +
         " €\n";
+
     });
+
+    return details;
+  }
+
+
+  /* =====================================================
+     ÉCHAPPER HTML
+  ===================================================== */
+
+  function echapperHTML(texte) {
+
+    return String(texte)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  /* =====================================================
+     ÉCHAPPER ATTRIBUT
+  ===================================================== */
+
+  function echapperAttribut(texte) {
+
+    return String(texte)
+      .replace(/\\/g, "\\\\")
+      .replace(/'/g, "\\'");
+  }
+
+
+  /* =====================================================
+     PRÉPARER ET ENREGISTRER LA COMMANDE
+  ===================================================== */
+
+  async function preparerCommande() {
+
+    /*
+     * Vérification du panier.
+     */
+
+    if (panier.length === 0) {
+
+      alert(
+        "Ajoutez au moins un plat à votre panier."
+      );
+
+      return;
+    }
+
+
+    /*
+     * Récupération des informations.
+     */
+
+    const nom =
+      document.getElementById("nom")
+        .value
+        .trim();
+
+    const telephone =
+      document.getElementById("telephone")
+        .value
+        .trim();
+
+    const mode =
+      document.getElementById("mode")
+        .value;
+
+    const adresse =
+      document.getElementById("adresse")
+        .value
+        .trim();
+
+    const note =
+      document.getElementById("note")
+        .value
+        .trim();
+
+
+    /*
+     * Vérification des champs obligatoires.
+     */
+
+    if (!nom || !telephone || !adresse) {
+
+      alert(
+        "Merci de remplir votre nom, votre téléphone et votre adresse."
+      );
+
+      return;
+    }
+
+
+    /*
+     * Vérification de la clé Supabase.
+     */
+
+    if (
+      !SUPABASE_ANON_KEY ||
+      SUPABASE_ANON_KEY ===
+      "COLLE_TA_CLE_PUBLISHABLE_ICI"
+    ) {
+
+      alert(
+        "La clé Publishable Supabase n'est pas encore configurée."
+      );
+
+      return;
+    }
+
+
+    /*
+     * Calcul du total.
+     */
+
+    const total =
+      calculerTotal();
+
+
+    /*
+     * Création des détails.
+     */
+
+    const details =
+      creerDetailsCommande();
+
+
+    /*
+     * Texte de confirmation.
+     */
 
     const commande =
       "NOUVELLE COMMANDE TASTY & CRÉMEUX\n\n" +
+
       details +
+
       "\nTOTAL : " +
+
       total.toFixed(2).replace(".", ",") +
+
       " €\n\n" +
-      "Nom : " + nom + "\n" +
-      "Téléphone : " + telephone + "\n" +
-      "Mode : " + mode + "\n" +
-      "Adresse : " + adresse + "\n" +
-      "Note : " + (note || "Aucune");
 
-    const confirmation = document.getElementById("confirmation");
+      "Nom : " +
+      nom +
 
-    confirmation.style.display = "block";
+      "\n" +
 
-    confirmation.innerHTML =
-      "<strong>Commande préparée ✅</strong><br><br>" +
-      commande.replace(/\n/g, "<br>");
+      "Téléphone : " +
+      telephone +
+
+      "\n" +
+
+      "Mode : " +
+      mode +
+
+      "\n" +
+
+      "Adresse : " +
+      adresse +
+
+      "\n" +
+
+      "Note : " +
+      (note || "Aucune");
+
+
+    /*
+     * Bouton.
+     */
+
+    const bouton =
+      document.getElementById(
+        "boutonCommande"
+      );
+
+    const confirmation =
+      document.getElementById(
+        "confirmation"
+      );
+
+
+    bouton.disabled = true;
+
+    bouton.textContent =
+      "ENVOI DE LA COMMANDE...";
+
+
+    confirmation.style.display =
+      "none";
+
+
+    /*
+     * =================================================
+     * ENVOI VERS SUPABASE
+     *
+     * IMPORTANT :
+     * Le fetch est ici, DANS la fonction.
+     * C'est la correction principale.
+     * =================================================
+     */
+
+    try {
+
+      const reponse =
+        await fetch(
+          SUPABASE_URL +
+          "/rest/v1/orders",
+          {
+            method: "POST",
+
+            headers: {
+
+              "apikey":
+                SUPABASE_ANON_KEY,
+
+              "Authorization":
+                "Bearer " +
+                SUPABASE_ANON_KEY,
+
+              "Content-Type":
+                "application/json",
+
+              "Prefer":
+                "return=minimal"
+
+            },
+
+            /*
+             * On utilise uniquement les colonnes
+             * que tu as déjà créées dans Supabase :
+             *
+             * customer_name
+             * customer_phone
+             * customer_address
+             *
+             * Cela évite une erreur si les colonnes
+             * "note", "mode", "total", etc. n'existent
+             * pas encore dans ta table.
+             */
+
+            body: JSON.stringify({
+
+              customer_name:
+                nom,
+
+              customer_phone:
+                telephone,
+
+              customer_address:
+                adresse
+
+            })
+
+          }
+        );
+
+
+      /*
+       * Si Supabase refuse la commande.
+       */
+
+      if (!reponse.ok) {
+
+        let messageErreur =
+          "Erreur Supabase.";
+
+        try {
+
+          const erreur =
+            await reponse.json();
+
+          if (erreur.message) {
+
+            messageErreur =
+              erreur.message;
+
+          } else if (erreur.error) {
+
+            messageErreur =
+              erreur.error;
+
+          }
+
+        } catch (e) {
+
+          /*
+           * Rien à faire si la réponse
+           * n'est pas du JSON.
+           */
+
+        }
+
+        throw new Error(
+          messageErreur
+        );
+      }
+
+
+      /*
+       * =================================================
+       * COMMANDE ENREGISTRÉE
+       * =================================================
+       */
+
+      confirmation.classList.remove(
+        "erreur"
+      );
+
+      confirmation.style.display =
+        "block";
+
+      confirmation.innerHTML =
+        "<strong>Commande enregistrée ✅</strong>" +
+        "<br><br>" +
+        "Votre commande a bien été envoyée." +
+        "<br><br>" +
+        commande
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\n/g, "<br>");
+
+
+      /*
+       * On vide le panier après
+       * l'enregistrement réussi.
+       */
+
+      panier = [];
+
+      afficherPanier();
+
+
+      /*
+       * On remet le formulaire à zéro.
+       */
+
+      document.getElementById("nom")
+        .value = "";
+
+      document.getElementById("telephone")
+        .value = "";
+
+      document.getElementById("adresse")
+        .value = "";
+
+      document.getElementById("note")
+        .value = "";
+
+
+    } catch (erreur) {
+
+      /*
+       * =================================================
+       * ERREUR
+       * =================================================
+       */
+
+      console.error(
+        "Erreur lors de l'envoi :",
+        erreur
+      );
+
+
+      confirmation.classList.add(
+        "erreur"
+      );
+
+      confirmation.style.display =
+        "block";
+
+      confirmation.innerHTML =
+        "<strong>Impossible d'envoyer la commande ❌</strong>" +
+        "<br><br>" +
+        "La commande n'a pas été enregistrée." +
+        "<br>" +
+        "Vérifie la configuration Supabase.";
+
+
+    } finally {
+
+      /*
+       * Le bouton redevient disponible.
+       */
+
+      bouton.disabled = false;
+
+      bouton.textContent =
+        "PRÉPARER MA COMMANDE 👑";
+
+    }
+
   }
-  const SUPABASE_URL = "https://jeyvtkutqlaasadckkts.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_vc1Qb_QbOW6M4RSWTmY2Ag_f6Vzp2XP";
-  fetch(SUPABASE_URL + "/rest/v1/orders", {
-  method: "POST",
-    headers: {
-      "apikey": SUPABASE_ANON_KEY,
-      "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-      "Content-Type": "application/json"
-        },
-    body: JSON.stringify({
-      customer_name: nom,
-      customer_phone: telephone,
-      customer_address: adresse,
-      note: note
-        })
-      .then(response => {
 
-  if (!response.ok) throw new Error("Erreur Supabase");
 
-  return response.json();
+  /* =====================================================
+     AFFICHAGE INITIAL
+  ===================================================== */
 
-})
+  afficherPanier();
 
-.then(() => {
-
-  console.log("Commande envoyée à Supabase");
-
-})
-
-.catch(error => {
-
-  console.error(error);
-
-});
 </script>
 
 </body>
